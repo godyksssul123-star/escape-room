@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>1. 살인자의 은신처..</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      text-align: center; 
+      margin-top: 80px; 
+      background-color: #111; 
+      color: #eee; 
+    }
+    input { 
+      padding: 12px; 
+      font-size: 18px; 
+      border: 2px solid #444; 
+      border-radius: 5px; 
+      background-color: #222; 
+      color: #eee; 
+    }
+    button { 
+      padding: 12px 25px; 
+      font-size: 18px; 
+      margin-left: 10px; 
+      background-color: #333; 
+      color: #fff; 
+      border: 2px solid #555; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    }
+    button:hover { background-color: #555; }
+    #message { 
+      margin-top: 20px; 
+      font-size: 20px; 
+    }
+    #hintMessage {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #ffd700;
+    }
+    h1 { font-size: 28px; color: #ff4c4c; }
+    h2 { font-size: 24px; color: #ff704c; }
+    h3 { font-size: 20px; color: #ffb84c; }
+  </style>
+</head>
+<body>
+  <h1>💀🔪 강키위의 방탈출 - Ep1. 살인자의 은신처.. 💀🔪</h1>
+  <h2>🔐 Stage 1</h2>
+  <h3>🗄️ 좌측 하단 캐비넷의 자물쇠</h3>
+  <p>5자리 숫자의 자물쇠가 있다... 😨 긴장되는 순간, 손이 떨린다..</p>
+  <input type="text" id="password" maxlength="5" placeholder="정답을 입력하세요">
+  <button onclick="checkPassword()">확인 🕯️</button>
+  <button id="hintButton">💡 힌트 보기</button>
+  <div id="message"></div>
+  <div id="hintMessage"></div>
+
+  <script>
+    const correctPassword = "12345"; // 정답 설정
+    const nextVideoURL = "https://youtube.com/shorts/uUaKS20zTH0?feature=share"; // 다음 영상
+
+    // 버튼 클릭 함수
+    function checkPassword() {
+      const userInput = document.getElementById("password").value;
+      const messageDiv = document.getElementById("message");
+
+      if (userInput === correctPassword) {
+        messageDiv.style.color = "#00ff00";
+        messageDiv.textContent = "🎉 딸깍..! 자물쇠가 열리고 캐비닛이 천천히 열린다... 😱💀";
+        setTimeout(() => {
+          window.location.href = nextVideoURL;
+        }, 1000);
+      } else {
+        messageDiv.style.color = "#ff4444";
+        messageDiv.textContent = "❌ 자물쇠가 꿈쩍하지 않는다... 심장이 두근거린다.. 👀🩸";
+      }
+    }
+
+    // 엔터키 입력 시 버튼 클릭
+    const inputField = document.getElementById("password");
+    inputField.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+
+    // 힌트 버튼 클릭
+    const hintButton = document.getElementById("hintButton");
+    hintButton.addEventListener("click", function() {
+      const hintDiv = document.getElementById("hintMessage");
+      hintDiv.textContent = "🔍 힌트: 첫 번째 숫자는 홀수입니다...";
+    });
+
+
+let hintVisible = false;
+
+hintButton.addEventListener("click", function() {
+  const hintDiv = document.getElementById("hintMessage");
+  if (!hintVisible) {
+    hintDiv.textContent = "🔍 힌트: 첫 번째 숫자는 홀수입니다...";
+    hintVisible = true;
+    hintButton.textContent = "💡 힌트 숨기기";
+  } else {
+    hintDiv.textContent = "";
+    hintVisible = false;
+    hintButton.textContent = "💡 힌트 보기";
+  }
+});
+  </script>
+</body>
+</html>
